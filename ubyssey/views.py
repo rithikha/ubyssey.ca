@@ -62,10 +62,13 @@ class UbysseyTheme(DefaultTheme):
 
         sections = ArticleHelper.get_frontpage_sections(exclude=frontpage_ids)
 
+        trending = ArticleHelper.get_trending_article()
+        print trending
+
         try:
             articles = {
                 'primary': frontpage[0],
-                'secondary': frontpage[1],
+                'secondary': trending if trending else frontpage[1],
                 'thumbs': frontpage[2:4],
                 'bullets': frontpage[4:6],
 

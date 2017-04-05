@@ -1,4 +1,5 @@
 from random import randint
+import datetime
 
 from django.db import connection
 from django.db.models.aggregates import Count
@@ -164,3 +165,21 @@ class ArticleHelper(object):
                 results.append(articles[index])
 
         return results
+
+    @staticmethod
+    def get_trending_article():
+        current_time = datetime.datetime.now()
+        end = current_time
+        start = end - datetime.timedelta(hours=6)
+        time_range = (start, end)
+
+        trending = Article.objects.filter(views__gt=1, published_at__range=(time_range))
+        # grab most viewed article in the past 6 hours
+        top_article_views = 0
+        top_article = None
+        for x in trending:
+            if x.views__gt > top_article_views:
+                top_article = x
+                top_article_views = x.views__gt
+
+        return top_article
