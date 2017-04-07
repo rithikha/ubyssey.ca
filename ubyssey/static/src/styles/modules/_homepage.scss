@@ -4,6 +4,8 @@ img.featured {
   width: 100%;
 }
 
+
+
 div.homepage-section {
   @media($bp-larger-than-phablet){
     padding-bottom: 25px;
@@ -49,6 +51,7 @@ div.frontpage {
       ul.article-headlines {
         display: none;
       }
+
     }
 
     &.middle {
@@ -152,9 +155,11 @@ div.frontpage {
     }
     &.left {
       border-right: 1px solid #E6E6E6;
+
       article, ul.article-headlines {
         padding-top: 15px;
         padding-bottom: 15px;
+
         h2.headline {
           margin-bottom: 0.5rem;
         }
@@ -164,6 +169,7 @@ div.frontpage {
         &:last-child {
           border-bottom: none;
         }
+
       }
       ul.article-headlines {
         display: block;
@@ -376,7 +382,6 @@ article.section-top {
       flex: 6;
     }
   }
-
 }
 
 // Stacked articles (used in .section-1)

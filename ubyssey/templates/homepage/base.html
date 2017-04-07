@@ -9,6 +9,9 @@
     <div class="homepage-section frontpage-container">
         <div class="frontpage">
             <div class="cell left">
+              <div class = "trendng-icon">
+              <i class="o-trending-badge fa fa-bolt" aria-hidden="true"></i>
+            </div>
             {% with articles.secondary as article %}
                 <article class="secondary padded">
                     <h2 class="headline"><a href="{{ article.get_absolute_url }}?ref=frontpage">{{ article.headline|safe }}</a></h2>
