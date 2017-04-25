@@ -93,7 +93,7 @@ const VideoSection = React.createClass({
                     className="section-video-list"
                     style={{background: this.state.selected === video? "#dddddd" : "white"}}>
                     {this.renderImage(video)}
-                    <h2 className="headline">{video.title} {video.id}</h2>
+                    <h2 className="headline">{video.title}</h2>
                     <span className="byline">
                         <span className="published">{formatPubDate(video.publishedAt)}</span>
                     </span>
