@@ -223,6 +223,14 @@ class UbysseyTheme(DefaultTheme):
 
         t = loader.select_template(["%s/%s" % (section.slug, 'section.html'), 'section.html'])
         return HttpResponse(t.render(context))
+    
+    def videos(self, request, slug=None):
+        context = {
+            'meta': {
+                'title': 'Videos'
+            }
+        }
+        return render(request, 'videos.html', context)
 
     def get_author_meta(self, person):
 

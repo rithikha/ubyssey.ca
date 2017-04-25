@@ -19,3 +19,19 @@ main.section {
     margin-bottom: 1rem;
   }
 }
+
+.section-video-list {
+  padding: 10px;
+  margin-bottom: 10px;
+  
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.section-video-image__preview {
+  display: none;
+  @media($bp-larger-than-phablet) {
+    display: block;
+  }
+}

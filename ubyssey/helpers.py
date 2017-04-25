@@ -1,9 +1,38 @@
 from random import randint
+import urllib, json, datetime
 
 from django.db import connection
 from django.db.models.aggregates import Count
 
 from dispatch.apps.content.models import Article, Section
+
+class VideoHelper(object):
+    @staticmethod
+    def get_videos(numResults):
+        api_key = 'AIzaSyAbp6M75Dj1AR6LBHhhM74DJcey7W6hBYw'
+        channel_id = 'UCC2NYIKsQwDJkYH0zXC_MbA' #TheUbyssey
+        api_url = r'''https://www.googleapis.com/youtube/v3/search?key={0}
+                        &channelId={1}
+                        &part=snippet,id
+                        &order=date&maxResults={2}'''
+        inp = urllib.urlopen(api_url.format(api_key, channel_id, numResults))
+        resp = json.load(inp)
+        inp.close()
+
+        videos = []
+        for video in resp['items']:
+            published_time = video['snippet']['publishedAt']
+            item = {
+                'id': video['id']['videoId'],
+                'thumbnails': video['snippet']['thumbnails'],
+                'title': video['snippet']['title'],
+                'description': video['snippet']['description'],
+                'published_at': datetime.datetime.strptime(published_time, '%Y-%m-%dT%H:%M:%S.%fZ'),
+                'url': 'https://www.youtube.com/watch?v=' + video['id']['videoId']
+            }
+            videos.append(item)
+
+        return videos
 
 class ArticleHelper(object):
 

@@ -7,6 +7,7 @@ module.exports = {
         dfp:     './src/js/dfp.js',
         article: './src/js/article.jsx',
         section: './src/js/section.jsx',
+        video: './src/js/video.jsx',
         vendors: './src/js/vendors.js'
     },
     output: {

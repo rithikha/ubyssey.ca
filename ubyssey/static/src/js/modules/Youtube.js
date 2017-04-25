@@ -49,3 +49,29 @@ window.onYouTubeIframeAPIReady = function() {
         YoutubePlayer(this);
     });
 }
+
+export function YoutubeLoader(success, error) {
+    const KEY = 'AIzaSyAbp6M75Dj1AR6LBHhhM74DJcey7W6hBYw';
+    const CHANNEL = 'UCC2NYIKsQwDJkYH0zXC_MbA'; // TheUbyssey
+    const URL = 'https://www.googleapis.com/youtube/v3/search?key={0}&channelId={1}&part=snippet,id&order=date&maxResults=20'
+                    .replace('{0}', KEY)
+                    .replace('{1}', CHANNEL);
+    $.ajax({
+        url: URL,
+        success: function(data) {
+            let videos = [];
+            data.items.forEach(function (video) {
+                videos.push({
+                    id: video.id.videoId,
+                    thumbnails: video.snippet.thumbnails,
+                    title: video.snippet.title,
+                    description: video.snippet.description,
+                    publishedAt: video.snippet.publishedAt,
+                    url: 'https://www.youtube.com/watch?v=' + video.id.videoId
+                });
+            })
+            success(videos);
+        },
+        error: error
+    });
+}
