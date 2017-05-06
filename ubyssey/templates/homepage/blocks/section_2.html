@@ -1,11 +1,11 @@
 {% load humanize %}
-<h1 class="section"><a href={% url 'page' section %}>{{ section|title }}</a></h1>
+<h2 class="section"><a href={% url 'page' section %}>{{ section|title }}</a></h2>
 <section class="{{ section }} homepage section-2">
     <div class="inner">
         <article class="section-top row padded">
             {% with articles.first as article %}
                 <div class="left stack-mobile">
-                    <a class="image" href="{{ article.get_absolute_url }}"><img class="featured" src="{{ article.featured_image.image.get_medium_url }}" /></a>
+                    <a class="image" href="{{ article.get_absolute_url }}"><img class="featured" src="{{ article.featured_image.image.get_medium_url }}" alt="{{article.title}}"/></a>
                 </div>
                 <div class="left">
                     <h3 class="headline"><a href="{{ article.get_absolute_url }}">{{ article.headline|safe }}</a></h3>

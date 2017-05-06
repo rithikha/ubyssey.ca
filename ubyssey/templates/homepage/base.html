@@ -19,24 +19,24 @@
             {% for article in articles.thumbs %}
                 <article class="thumb row padded">
                     <div class="image">
-                        <a href="{{ article.get_absolute_url }}?ref=frontpage"><img src="{{ article.featured_image.image.get_thumbnail_url }}"/></a>
+                        <a href="{{ article.get_absolute_url }}?ref=frontpage"><img src="{{ article.featured_image.image.get_thumbnail_url }}" alt="{{article.title}}"/></a>
                     </div>
                     <div>
-                        <h2 class="headline"><a href="{{ article.get_absolute_url }}?ref=frontpage">{{ article.headline|safe }}</a></h2>
+                        <h3 class="headline"><a href="{{ article.get_absolute_url }}?ref=frontpage">{{ article.headline|safe }}</a></h3>
                         <p class="snippet"><span class="timestamp hide-desktop">{{ article.published_at|naturaltime }}</span></p>
                     </div>
                 </article>
             {% endfor %}
                <ul class="article-headlines">
             {% for article in articles.bullets %}
-                <li><a href="{{ article.get_absolute_url }}?ref=frontpage"><h2 class="headline">{{ article.headline|safe }}</h2></a></li>
+                <li><a href="{{ article.get_absolute_url }}?ref=frontpage"><h3 class="headline">{{ article.headline|safe }}</h3></a></li>
             {% endfor %}
                 </ul>
             </div>
             <div class="cell middle">
                 {% with articles.primary as article %}
                 <article class="primary {{ article.template }}">
-                    <a class="image" href="{{ article.get_absolute_url }}?ref=frontpage"><img src="{{ article.featured_image.image.get_medium_url }}"/></a>
+                    <a class="image" href="{{ article.get_absolute_url }}?ref=frontpage"><img src="{{ article.featured_image.image.get_medium_url }}" alt="{{article.title}}"/></a>
                     <div class="meta">
                         <a href="{{ article.get_absolute_url }}?ref=frontpage"><h1 class="headline">{{ article.headline|safe }}</h1></a>
                         <span class="byline"><span class="author">By {{ article.get_author_string|safe }}</span> &nbsp;&middot;&nbsp; <span class="published">{{ article.published_at }}</span></span>
