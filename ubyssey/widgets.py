@@ -115,14 +115,42 @@ class UpcomingEventsHorizontalWidget(Widget):
         return result
 
 @register.widget
+class TopStoryDefault(Widget):
+    id = 'top-story-default'
+    name = 'Top Story Default'
+    template = 'widgets/frontpage/topstory-default.html'
+
+    accepted_keywords = ('articles', )
+
+    zones = (ArticleHorizontal,)
+
+@register.widget
+class TopStoryLive(Widget):
+    id = 'top-story-live'
+    name = 'Top Story Live'
+    template = 'widgets/frontpage/topstory-live.html'
+    zones = (ArticleHorizontal,)
+
+    title = CharField('Title')
+    video_url = CharField('Video URL')
+    summary = CharField('Video Summary')
+
+    accepted_keywords = ('articles', )
+
+
+
+
+
+@register.widget
 class FrontPageDefault(Widget):
     id = 'frontpage-default'
     name = 'Default Front Page'
     template = 'widgets/frontpage/default.html'
-    zones = (FrontPage, )
+    zones = (FrontPage,)
 
     accepted_keywords = ('articles', )
 
+    top_story = WidgetField('Top Story', [TopStoryDefault, TopStoryLive], required=True)
     sidebar = WidgetField('Sidebar', [UpcomingEventsWidget], required=True)
 
 def in_date_range(start, end):
